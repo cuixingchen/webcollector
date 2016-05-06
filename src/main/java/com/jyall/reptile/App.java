@@ -12,7 +12,8 @@ public class App {
         NewHouseCrawler crawler = new NewHouseCrawler("newHouse", true);
 //        crawler.addSeed("http://" + city + ".fang.anjuke.com/");//查询总数
 //        crawler.addSeed("http://" + city + ".fang.anjuke.com/loupan/s?p=1");//查询分页
-        crawler.addSeed("http://" + city + ".fang.anjuke.com/loupan/canshu-410134.html");//查询单品参数
+//        crawler.addSeed("http://" + city + ".fang.anjuke.com/loupan/canshu-410134.html");//查询单品参数
+        crawler.addSeed("http://" + city + ".fang.anjuke.com/loupan/canshu-246882.html");//查询单品参数
 //        crawler.addSeed("http://" + city + ".fang.anjuke.com/loupan/huxing-410134.html");//查询单品户型
 //        crawler.addSeed("http://" + city + ".fang.anjuke.com/loupan/xiangce-410134.html");//查询单品相册
 

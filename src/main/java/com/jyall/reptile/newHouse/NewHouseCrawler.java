@@ -63,17 +63,17 @@ public class NewHouseCrawler extends BreadthCrawler {
             next.add(datalink.replace("canshu", "xiangce"));//查询单品相册
         } else if (page.matchUrl("http://[a-zA-Z]{1,}.fang.anjuke.com/loupan/canshu-[0-9]{1,}.html")) {
             logger.info("URL:" + page.getUrl());
-            CanshuBean bean = BeanHelper.canshuHelper(page.getHtml());
+            CanshuBean bean = BeanHelper.canshuHelper(page.getHtml(),page.getUrl());
             logger.info(bean.toString());
 
         } else if (page.matchUrl("http://[a-zA-Z]{1,}.fang.anjuke.com/loupan/huxing-[0-9]{1,}.html")) {
             logger.info("URL:" + page.getUrl());
-            HuxingBean bean = BeanHelper.huxingHelper(page.getHtml());
+            HuxingBean bean = BeanHelper.huxingHelper(page.getHtml(),page.getUrl());
             logger.info(bean.toString());
 
         } else if (page.matchUrl("http://[a-zA-Z]{1,}.fang.anjuke.com/loupan/xiangce-[0-9]{1,}.html")) {
             logger.info("URL:" + page.getUrl());
-            XiangceBean bean = BeanHelper.xiangceHelper(page.getHtml());
+            XiangceBean bean = BeanHelper.xiangceHelper(page.getHtml(),page.getUrl());
             logger.info(bean.toString());
         }
 

@@ -22,6 +22,11 @@ public class CanshuBean implements Serializable {
      * 楼盘名称
      */
     private String name;
+
+    /**
+     * 楼盘状态（是否在售竣工）
+     */
+    private String status;
     /**
      * 楼盘特点
      */
@@ -55,6 +60,11 @@ public class CanshuBean implements Serializable {
      * 最低售价
      */
     private String zuidishoufu;
+
+    /**
+     * 楼盘优惠
+     */
+    private String loupanyouhui;
     /**
      * 楼盘户型
      */
@@ -125,6 +135,10 @@ public class CanshuBean implements Serializable {
     /***************************交通配套*********************************************/
 
     /**
+     * 公交
+     */
+    private String gongjiao;
+    /**
      * 地铁
      */
     private String ditie;
@@ -132,6 +146,14 @@ public class CanshuBean implements Serializable {
      * 高速高架
      */
     private String gaosugaojia;
+
+    public String getGongjiao() {
+        return gongjiao;
+    }
+
+    public void setGongjiao(String gongjiao) {
+        this.gongjiao = gongjiao;
+    }
 
     public String getName() {
         return name;
@@ -355,5 +377,21 @@ public class CanshuBean implements Serializable {
 
     public void setLoupan_Id(int loupan_Id) {
         this.loupan_Id = loupan_Id;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getLoupanyouhui() {
+        return loupanyouhui;
+    }
+
+    public void setLoupanyouhui(String loupanyouhui) {
+        this.loupanyouhui = loupanyouhui;
     }
 }
