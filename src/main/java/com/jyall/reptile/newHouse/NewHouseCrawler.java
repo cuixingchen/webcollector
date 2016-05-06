@@ -14,6 +14,8 @@ import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * User: cuipengfei
@@ -63,18 +65,31 @@ public class NewHouseCrawler extends BreadthCrawler {
             next.add(datalink.replace("canshu", "xiangce"));//查询单品相册
         } else if (page.matchUrl("http://[a-zA-Z]{1,}.fang.anjuke.com/loupan/canshu-[0-9]{1,}.html")) {
             logger.info("URL:" + page.getUrl());
-            CanshuBean bean = BeanHelper.canshuHelper(page.getHtml(),page.getUrl());
+            CanshuBean bean = BeanHelper.canshuHelper(page.getHtml(), page.getUrl());
             logger.info(bean.toString());
 
         } else if (page.matchUrl("http://[a-zA-Z]{1,}.fang.anjuke.com/loupan/huxing-[0-9]{1,}.html")) {
             logger.info("URL:" + page.getUrl());
-            HuxingBean bean = BeanHelper.huxingHelper(page.getHtml(),page.getUrl());
-            logger.info(bean.toString());
+            List<HuxingBean> beanList = BeanHelper.huxingHelper(page.getHtml(), page.getUrl());
+            logger.info(beanList.toString());
 
         } else if (page.matchUrl("http://[a-zA-Z]{1,}.fang.anjuke.com/loupan/xiangce-[0-9]{1,}.html")) {
             logger.info("URL:" + page.getUrl());
-            XiangceBean bean = BeanHelper.xiangceHelper(page.getHtml(),page.getUrl());
-            logger.info(bean.toString());
+            Document doc = Jsoup.parse(page.getHtml());
+            Element content = doc.getElementById("container");
+            Elements aList = content.getElementsByClass("album-head")
+                    .get(0).getElementsByTag("a");
+            for (Element a : aList
+                    ) {
+                String href = a.attr("href");
+                if (!"#".equals(href)) {
+                    next.add(href);
+                }
+            }
+        } else if (page.matchUrl("http://[a-zA-Z]{1,}.fang.anjuke.com/loupan/xiangce-[0-9]{1,}/[a-zA-Z]{1,}.html")) {
+            logger.info("URL:" + page.getUrl());
+            List<XiangceBean> beanList = BeanHelper.xiangceHelper(page.getHtml(), page.getUrl());
+            logger.info(beanList.toString());
         }
 
 

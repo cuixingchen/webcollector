@@ -3,10 +3,16 @@ package com.jyall.reptile.newHouse.utils;
 import com.jyall.reptile.newHouse.bean.CanshuBean;
 import com.jyall.reptile.newHouse.bean.HuxingBean;
 import com.jyall.reptile.newHouse.bean.XiangceBean;
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
+import org.jsoup.helper.StringUtil;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -134,7 +140,6 @@ public class BeanHelper {
             }
 
         }
-
         return canshuBean;
 
     }
@@ -145,8 +150,35 @@ public class BeanHelper {
      * @param html
      * @return
      */
-    public static HuxingBean huxingHelper(String html, String url) {
-        return null;
+    public static List<HuxingBean> huxingHelper(String html, String url) {
+        List<HuxingBean> list = new ArrayList<HuxingBean>();
+        HuxingBean huxingBean = null;
+        int loupan_Id = Integer.parseInt(url.substring(url.indexOf("huxing-") + 7)
+                .replace(".html", ""));
+        Document doc = Jsoup.parse(html);
+        Element content = doc.getElementById("content");
+        Elements ul_Element = content.getElementsByClass("hx-list");
+        Elements a_Element = ul_Element.get(0).getElementsByTag("a");
+        for (Element a : a_Element
+                ) {
+            huxingBean = new HuxingBean();
+            huxingBean.setLoupan_Id(loupan_Id);
+            Elements type_name = a.getElementsByClass("type-name");
+            Elements descrip = type_name.get(0).getElementsByClass("descrip");
+            huxingBean.setHuxing(
+                    descrip.get(0).getElementsByClass("desc-k").get(0).text());
+            huxingBean.setHuxing_des(
+                    descrip.get(0).getElementsByClass("desc-v").get(0).text());
+            huxingBean.setSale_status(
+                    descrip.get(0).getElementsByClass("comm-stat").get(0).text());
+            huxingBean.setMianji(
+                    descrip.get(1).getElementsByClass("desc-v").get(0).text());
+            huxingBean.setHuxing_img(a.getElementsByTag("img").get(0).attr("imglazyload-src"));
+            huxingBean.setHuxing_name(a.attr("title"));
+            huxingBean.setHuxing_xiangxi_url(a.attr("href"));
+            list.add(huxingBean);
+        }
+        return list;
     }
 
     /**
@@ -155,7 +187,33 @@ public class BeanHelper {
      * @param html
      * @return
      */
-    public static XiangceBean xiangceHelper(String html, String url) {
-        return null;
+    public static List<XiangceBean> xiangceHelper(String html, String url) {
+        List<XiangceBean> list = new ArrayList<XiangceBean>();
+        XiangceBean xiangceBean = null;
+        int loupan_Id = Integer.parseInt(url.substring(url.indexOf("xiangce-") + 8).split("/")[0]);
+        Document doc = Jsoup.parse(html);
+        Element content = doc.getElementById("container");
+        Elements album_head = content.getElementsByClass("album-head");
+        Elements others_picList = content.getElementsByClass("album-content")
+                .get(0).getElementsByClass("others-pic");
+        for (Element others_pic : others_picList
+                ) {
+            Elements o_list = others_pic.getElementsByClass("others-b").get(0)
+                    .getElementsByClass("o-list");
+            for (Element em : o_list
+                    ) {
+                xiangceBean = new XiangceBean();
+                Elements o_item = em.getElementsByClass("o-item");
+                Elements album_des = em.getElementsByClass("album-des");
+                Elements album_time = em.getElementsByClass("album-time");
+                xiangceBean.setLoupan_Id(loupan_Id);
+                xiangceBean.setType(album_head.get(0).getElementsByClass("on").get(0).text());
+                xiangceBean.setImg(o_item.get(0).getElementsByTag("img").get(0).attr("imglazyload-src"));
+                xiangceBean.setTitle(album_des.get(0).text());
+                xiangceBean.setTime(album_time.get(0).text());
+                list.add(xiangceBean);
+            }
+        }
+        return list;
     }
 }

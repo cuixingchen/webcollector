@@ -13,9 +13,9 @@ public class App {
 //        crawler.addSeed("http://" + city + ".fang.anjuke.com/");//查询总数
 //        crawler.addSeed("http://" + city + ".fang.anjuke.com/loupan/s?p=1");//查询分页
 //        crawler.addSeed("http://" + city + ".fang.anjuke.com/loupan/canshu-410134.html");//查询单品参数
-        crawler.addSeed("http://" + city + ".fang.anjuke.com/loupan/canshu-246882.html");//查询单品参数
+//        crawler.addSeed("http://" + city + ".fang.anjuke.com/loupan/canshu-246882.html");//查询单品参数
 //        crawler.addSeed("http://" + city + ".fang.anjuke.com/loupan/huxing-410134.html");//查询单品户型
-//        crawler.addSeed("http://" + city + ".fang.anjuke.com/loupan/xiangce-410134.html");//查询单品相册
+        crawler.addSeed("http://" + city + ".fang.anjuke.com/loupan/xiangce-410134.html");//查询单品相册
 
         /*可以设置每个线程visit的间隔，这里是毫秒*/
         //crawler.setVisitInterval(1000);

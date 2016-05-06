@@ -394,4 +394,41 @@ public class CanshuBean implements Serializable {
     public void setLoupanyouhui(String loupanyouhui) {
         this.loupanyouhui = loupanyouhui;
     }
+
+    @Override
+    public String toString() {
+        return "CanshuBean{" +
+                "loupan_Id=" + loupan_Id +
+                ", name='" + name + '\'' +
+                ", status='" + status + '\'' +
+                ", tedian='" + tedian + '\'' +
+                ", price='" + price + '\'' +
+                ", type='" + type + '\'' +
+                ", kaifashang='" + kaifashang + '\'' +
+                ", region='" + region + '\'' +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                ", zuidishoufu='" + zuidishoufu + '\'' +
+                ", loupanyouhui='" + loupanyouhui + '\'' +
+                ", huxing='" + huxing + '\'' +
+                ", kaipanTime='" + kaipanTime + '\'' +
+                ", jiaofangTime='" + jiaofangTime + '\'' +
+                ", shoulouchuAddress='" + shoulouchuAddress + '\'' +
+                ", jianzhuType='" + jianzhuType + '\'' +
+                ", chanquannianxian='" + chanquannianxian + '\'' +
+                ", zhuangxiubiaozhun='" + zhuangxiubiaozhun + '\'' +
+                ", rongjilv='" + rongjilv + '\'' +
+                ", lvhualv='" + lvhualv + '\'' +
+                ", guihuahushu='" + guihuahushu + '\'' +
+                ", loucengzhuangkuang='" + loucengzhuangkuang + '\'' +
+                ", gongchengjindu='" + gongchengjindu + '\'' +
+                ", wuyeguanlifei='" + wuyeguanlifei + '\'' +
+                ", wuyegongsi='" + wuyegongsi + '\'' +
+                ", cheweishu='" + cheweishu + '\'' +
+                ", cheweibi='" + cheweibi + '\'' +
+                ", gongjiao='" + gongjiao + '\'' +
+                ", ditie='" + ditie + '\'' +
+                ", gaosugaojia='" + gaosugaojia + '\'' +
+                '}';
+    }
 }
